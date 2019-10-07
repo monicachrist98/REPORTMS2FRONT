@@ -1,0 +1,141 @@
+<html>
+<link rel="stylesheet" 
+	  href="{{url_for('static', filename='style.css')}}">
+<body bgcolor="#F0FFF0">
+	<div class="topnav">
+        <a class="active" href="menu">HOME</a> 
+        <a href="changePass">ACCOUNT</a>
+        <a href="">TASK</a>
+      
+      <div class="dropdown">
+        <button class="dropbtn">TEMPLATE
+          <i class="fa fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown-content">
+          <a href="addTemplate">NEW TEMPLATE</a>
+          <a href="formatTemplate">EDIT TEMPLATE</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">QUERY
+          <i class="fa fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown-content">
+          <a href="insertQuery">NEW QUERY</a>
+          <a href="editQuery">EDIT QUERY</a>
+        </div>
+      </div>
+
+        <a href="preview">PREVIEW</a>
+
+      <div class="dropdown">
+        <button class="dropbtn">SCHEDULING
+          <i class="fa fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown-content">
+          <a href="addSchedule">NEW SCHEDULE</a>
+          <a href="editSchedule">EDIT SCHEDULE</a>
+          <a href="">RUN SCHEDULE</a>
+        </div>
+      </div>
+
+        <a href="">LIST REPORT</a>
+        <a href="login">LOGOUT</a>
+    </div>
+
+
+{% if listKodeReportQuery %}
+<title>Change Query</title>
+<center>
+<div class ="judul"><center>EDIT QUERY</center></div>
+<div class="containEdit">
+   <div class="row" style="display: block;">
+   <div class="tulisan" style="width: 350px; text-align: left">
+  	<form action="/editQuery" method = "POST">
+  <div class="row">
+    <label for="kodLap"> Template:  </label><br>
+    <input name="kodLap" list="listKodeQ">
+    <datalist id="listKodeQ">
+      {% for row in listKodeReportQuery %}
+      <option value="{{row[0]}}">
+        {% endfor %}
+    </datalist>
+  </div><br><br><br><br><br><br>
+
+  <center>
+    <div class="colBut">
+      <button class="submit"> Go </button> 
+      </form>
+    </div>
+  	  
+
+    <div class="colBut">
+      <form action="/menu">
+        <button class="submitRed"> Cancel </button>
+      </form>
+    </div>
+  </center>
+</div>
+</center>
+
+{% else %}
+
+<head>
+	<title>Format Template</title>
+</head>
+
+<div class="judul">
+	<center>FORMAT TEMPLATE</center>
+</div>
+
+<center>
+<div class="containEdit">
+        <center>
+          <div class="row" style="display: block;">
+              <div class="tulisan" style="width: 350px; text-align: left">
+                <label for="reportCode">Report Code :</label>
+                  <form action= "/formatTemplate" method = 'POST'>
+                  <input name="kodeLaporan" list="kodeReport" required>
+                 
+                  <br><br><br>
+
+                  <datalist id="kodeReport">
+                    {% for row in listKodeReport %}
+                    <option value="{{row[0]}}">
+                    {% endfor %}
+                  </datalist>
+         
+           </div>
+        </center>
+         </option>
+<center>
+  <br><br>
+
+	<div class="colBut">
+		 <button class="submit">Check</button>
+	</div>
+</form>
+
+  <div class="colBut">
+    <form action="/menu">
+      <button class="submitRed">Cancel</button>
+    </form>
+  </div>
+          
+</div>
+
+</center>
+
+
+
+
+
+{% endif %}
+
+</center>
+</body>
+</html>
